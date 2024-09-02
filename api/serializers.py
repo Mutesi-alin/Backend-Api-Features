@@ -75,10 +75,6 @@ class ClassPeriodSerializer(serializers.ModelSerializer):
         model = ClassPeriod
         fields = '__all__'
 
-
-
-
-
 class MinimalStudentSerializer(serializers.ModelSerializer):
     full_name= serializers.SerializerMethodField()
     def get_full_name(self,object):
@@ -96,8 +92,6 @@ class MinimalClassPeriodSerializer(serializers.ModelSerializer):
         fields = ["id", "start_time", "end_time"]
 
 
-
-
 class MinimalClassesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classes
@@ -106,7 +100,7 @@ class MinimalClassesSerializer(serializers.ModelSerializer):
 class MinimalCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ["id", "name", "description"]
+        fields = ["id"]
 
 class MinimalTeacherSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
@@ -116,4 +110,4 @@ class MinimalTeacherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Teacher
-        fields = ["id", "full_name", "email"]
+        fields = ["id", "full_name"]

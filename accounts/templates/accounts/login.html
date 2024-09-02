@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e4afaf;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('your-background-image.jpg');
+            background-size: cover;
+        }
+        
+        form {
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(51, 38, 38, 0.1);
+            width: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #110303; 
+        }
+        
+        .input-field {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+            background: rgba(97, 81, 81, 0.8); 
+        }
+        
+        .input-field label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        
+        .input-field input:focus + label,
+        .input-field input:not(:placeholder-shown) + label {
+            top: 0;
+            font-size: 12px;
+            background-color: white;
+            padding: 0 5px;
+        }
+        
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        
+        ul.messages {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        
+        ul.messages li {
+            margin-bottom: 5px;
+            color: rgb(19, 5, 5);
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <div class="input-field">
+            <input type="text" id="username" name="username" required placeholder=" ">
+            <label for="username">Enter user name</label>
+        </div>
+        <div class="input-field">
+            <input type="password" id="password" name="password" required placeholder=" ">
+            <label for="password">Enter your password</label>
+        </div>
+        <button type="submit">Log In</button>
+    </form>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>Login
